@@ -54,8 +54,8 @@
 			return false;
 		}
 		var updateSite = function(siteConfig) {
-			$("#site-title")[0].innerText = siteConfig.data.attributes.layout.header.title;
-			$("#site-logo")[0].src = siteConfig.data.attributes.layout.header.logoUrl;
+			$("#site-title")[0].innerText = siteConfig.data.attributes.layout.header.component.settings.title;
+			$("#site-logo")[0].src = siteConfig.data.attributes.layout.header.component.settings.logoUrl;
 			$.each($(".site-link"), function(i,link) {
 				link.href = link.href + "?site=" + gSiteId;
 			});
