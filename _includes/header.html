@@ -1,0 +1,43 @@
+   <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="navbar-logo pull-left" id="site-logo"></img>
+        <a class="navbar-brand site-link" href="../"  id="site-title">ArcGIS Open Data</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        {% for my_page in site.pages %}
+          {% if my_page.title %}
+            <li><a class="site-link page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
+          {% endif %}
+        {% endfor %}      
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/esri/opendata">Learn More</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change Theme <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> 
+                <a href="#" onclick="return appendCSS(399)">Site 399</a> 
+                <a target="_new" href="http://dev-od-admin-v2.s3-website-us-east-1.amazonaws.com/#/sites/399/layout/edit">edit</a></li>
+              <li>
+                <a href="#" onclick="return appendCSS(400)">Site 400</a>
+                <a target="_new" href="http://dev-od-admin-v2.s3-website-us-east-1.amazonaws.com/#/sites/400/layout/edit">edit</a>
+              </li>
+              <li>
+                <a href="#" onclick="return appendCSS(401)">Site 401</a>
+                <a target="_new" href="http://dev-od-admin-v2.s3-website-us-east-1.amazonaws.com/#/sites/401/layout/edit">edit</a>
+              </li>
+            </ul>        
+          </li>            
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!-- /.container -->
+  </nav>

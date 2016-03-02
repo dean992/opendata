@@ -1,0 +1,72 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+  <link href="http://esri.github.io/cedar/css/calcite-bootstrap.css" rel="stylesheet" id="calcite">
+
+	<script>
+		var gSiteId = null
+		var getUrlParameter = function(sParam) {
+		    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		        sURLVariables = sPageURL.split('&'),
+		        sParameterName,
+		        i;
+
+		    for (i = 0; i < sURLVariables.length; i++) {
+		        sParameterName = sURLVariables[i].split('=');
+
+		        if (sParameterName[0] === sParam) {
+		            return sParameterName[1] === undefined ? true : sParameterName[1];
+		        }
+		    }
+		};	
+		var cssUrl = function(siteId) {
+			return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/css/css";
+		}
+		var appendCSS = function(siteId) {
+			if(siteId === undefined || siteId === null) {
+				return;
+			}
+			var calcite = document.getElementById("calcite");
+
+			var link = document.createElement("link")
+			link.href = cssUrl(siteId);
+			link.type = "text/css";
+			link.rel = "stylesheet";
+			link.id = "calcite";
+			document.getElementsByTagName("head")[0].appendChild(link);
+			setTimeout(function() {
+				if(calcite !== undefined && calcite !== null) {
+					calcite.remove();
+				}
+			}, 2000)
+			return false;
+		}
+		var updateSite = function(siteConfig) {
+			$("#site-title")[0].innerText = siteConfig.data.attributes.layout.header.title;
+			$("#site-logo")[0].src = siteConfig.data.attributes.layout.header.logoUrl;
+			$.each($(".site-link"), function(i,link) {
+				link.href = link.href + "?site=" + gSiteId;
+			});
+		}
+		var getSite = function(siteId) {
+			$.ajax({
+			  url: "https://opendatadev.arcgis.com/api/v2/sites/" + siteId,
+			  success: updateSite
+			});
+		}
+		appendCSS(gSiteId = getUrlParameter('site'));
+		getSite(gSiteId)
+	</script>	
+</head>

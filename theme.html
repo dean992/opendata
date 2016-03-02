@@ -1,0 +1,27 @@
+---
+layout: page
+title: Theme
+permalink: /theme/
+---
+<article class="row">
+  <div class="col-md-8">
+    <h1>{{ page.title }}</h1>
+    <p>
+      Developers can build custom applications that include the design and branding of our open data site. This makes it easy for the community to build solutions that provide a consistent interface to people.
+    </p>
+
+    <ol>
+      <li>Install <a href="http://esri.github.io/calcite-bootstrap">Calcite-Bootstrap</a></li>
+      <li>Copy the <label for="css-url">Theme CSS URL</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="css-url" value="" readonly="true"></input>
+        </div>        
+
+      </li>
+    </ol>
+
+  </div>
+</article>
+<script>
+  $('#css-url')[0].value = cssUrl(gSiteId);
+</script>
