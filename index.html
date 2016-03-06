@@ -2,7 +2,6 @@
 layout: default
 ---
 
-<div class="row">
   <div class="col-md-8">
     <h1>Build with Open Data</h1>
     <p>
@@ -10,7 +9,7 @@ layout: default
     </p>
 
     <hr>
-    <h2>Features</h2>
+    <h2>Features</h2> 
     <div class="media">
       <div class="media-left">
         <a href="#">
@@ -29,23 +28,8 @@ layout: default
         </a>
       </div>
       <div class="media-body">
-        <h4 class="media-heading">Code &amp; Libraries</h4>
+        <h4 class="media-heading"><a class="site-link" href="code">Code &amp; Libraries</a></h4>
         Open Data includes software libraries in Python, JavaScript, Ruby, R, .NET, and more.
       </div>
     </div>   
   </div>
-  <div class="col-md-4">
-    <h3>Updates</h3>
-    <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-
-        <strong>
-          <a class="site-link post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </strong>
-        <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
-      </li>
-    {% endfor %}
-  </ul>
-  </div>
-</div>

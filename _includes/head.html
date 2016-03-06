@@ -13,8 +13,11 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-  <link href="http://esri.github.io/cedar/css/calcite-bootstrap.css" rel="stylesheet" id="calcite">
-
+  <link href="http://esri.github.io/calcite-bootstrap/assets/css/calcite-bootstrap.css" rel="stylesheet" id="calcite">
+  <!-- <script src="{{ "/node_modules/jquery/dist/jquery.min.js" | prepend: site.baseurl}}"></script>
+  <script src="{{ "/css/calcite-bootstrap/dist/js/bootstrap.min.js" | prepend: site.baseurl}}"></script>
+  <link href="{{ "/css/calcite-bootstrap/dist/css/calcite-bootstrap.min.css" | prepend: site.baseurl}}" rel="stylesheet" id="calcite">
+ -->
 	<script>
 		var gSiteId = null
 		var getUrlParameter = function(sParam) {
@@ -59,14 +62,22 @@
 			$.each($(".site-link"), function(i,link) {
 				link.href = link.href + "?site=" + gSiteId;
 			});
+
+			console.log("site config", siteConfig.data.attributes.url);
+			$("#site-title")[0].href = siteConfig.data.attributes.url;
+
 		}
 		var getSite = function(siteId) {
+			if(siteId === undefined || siteId === null) {
+				return;
+			}
 			$.ajax({
 			  url: "https://opendatadev.arcgis.com/api/v2/sites/" + siteId,
 			  success: updateSite
 			});
+			appendCSS(siteId);
+			return false;
 		}
-		appendCSS(gSiteId = getUrlParameter('site'));
-		getSite(gSiteId)
+		getSite(gSiteId = getUrlParameter('site'));
 	</script>	
 </head>

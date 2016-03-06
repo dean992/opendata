@@ -7,7 +7,10 @@
 
     {% include header.html %}
     <div class="container" role="main">
+	    <div class="row">
         {{ content }}
+	    {% include releases.html %}
+        </div>
     </div>
 
     {% include footer.html %}

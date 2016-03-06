@@ -3,12 +3,87 @@ layout: page
 title: API
 permalink: /api/
 ---
-<article class="row">
   <div class="col-md-8">
     <h1>{{ page.title }}</h1>
     <p>
-    This is a template showcasing what you can expect in Calcite-Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.
+    Open Data has a complete developer API for search, download, data, and management.
     </p>
-  </div>    
-</article>
+    <ul>
+    	<li>
+    		Open Data Catalog: learn more about how to search and access the metadata from open data. Try the <a href="http://akharris.github.io/ember-arc-swag/">Catalog API Explorer</a>.
+    	</li>
+    	<li>
+    		Open Data Query: full access to all data using the GeoServices API with multiple output formats. 
+    	</li>
+    </ul>
 
+    <h2>GeoServices Query API</h2>
+      <p>GeoServices is a REST-based application programming interface that provides developers consistent and complete access to structured data. Using the API, developers can query data using a SQL-like where clause, geospatial and time filters, perform aggregations, sorting, text search, and spatial projection.</p>
+
+      <p>Originally <a href="http://www.esri.com/industries/landing-pages/geoservices/geoservices">developed by Esri</a>, <a href="http://blogs.esri.com/esri/arcgis/2010/09/07/the-geoservices-rest-specification-an-open-standard-for-gis-web-services/">in 2010</a> the specification was transferred to the <a href="http://www.openwebfoundation.org/faqs/users-of-owf-agreements">Open Web Foundation</a>. 
+      </p>
+      <p>To learn even more about all of the capabilities of GeoServices, read the <a href="http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Working_with_services_you_ve_published/02r3000000tq000000/">full API documentation</a>.
+      </p>
+
+      <h3>In a Nutshell</h3>
+
+      <p>If you want to know just one thing about GeoServices - you can query for data using a location or attribute filters.
+      </p>
+      <p>Look up which U.S. county is at a specific latitude and longitude:
+      </p>
+      <pre>http://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/15/query
+        ?outFields=*
+        &amp;geometryType=esriGeometryPoint
+        &amp;geometry=-77.06930,38.89733
+        &amp;inSR=4326
+        &amp;f=json</pre>
+
+        <p>Returns JSON with an array of <code>features</code>. The output is truncated below:
+        </p>
+
+<pre>
+{
+  "displayFieldName": "BASENAME",
+  "features": [{
+    "attributes": {
+      "AREALAND": 67318078,
+      "AREAWATER": 244125,
+      "BASENAME": "Arlington",
+      "CENTLAT": "+38.8786295",
+      "CENTLON": "-077.1009869",
+      "COUNTY": "013",
+      "COUSUB": "90072",
+      "COUSUBCC": "Z7",
+      "COUSUBNS": "01480097",
+      "FUNCSTAT": "F",
+      "GEOID": "5101390072",
+      "INTPTLAT": "+38.8783374",
+      "INTPTLON": "-077.1007034",
+      "LSADC": "00",
+      "MTFCC": "G4040",
+      "NAME": "Arlington",
+      "OBJECTID": 14937,
+      "OID": 27653241101602,
+      "STATE": "51"
+    },
+    "geometry": { ... }
+  }],
+  "fields": [ ... ],
+  ...
+}</pre>
+
+
+<p>Or you can search for DC Public Schools that are Elementary and have between 200 and 1000 students within a map extent: 
+</p>
+<pre>
+http://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Education_WebMercator/MapServer/5/query
+?where=FACUSE like '%Elementary%' AND TOTAL_STUD >= 200 AND TOTAL_STUD <= 1000
+&amp;geometry={"xmin":-77.0036,"ymin":38.8879,"xmax":-76.98434,"ymax":38.90007,"spatialReference":{"wkid":4326}}
+&amp;geometryType=esriGeometryEnvelope
+&amp;inSR=4326
+&amp;outFields=*
+</pre>
+
+<p>These two examples are probably the most common use cases for using the GeoServices API. Read on for more details on advanced features.</p>
+
+</div>

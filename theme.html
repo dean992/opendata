@@ -3,7 +3,6 @@ layout: page
 title: Theme
 permalink: /theme/
 ---
-<article class="row">
   <div class="col-md-8">
     <h1>{{ page.title }}</h1>
     <p>
@@ -11,8 +10,8 @@ permalink: /theme/
     </p>
 
     <ol>
-      <li>Install <a href="http://esri.github.io/calcite-bootstrap">Calcite-Bootstrap</a></li>
-      <li>Copy the <label for="css-url">Theme CSS URL</label>
+      <li>Copy a <a href="http://esri.github.io/calcite-bootstrap">Bootstrap</a> layout</li>
+      <li>Add the <label for="css-url">Theme CSS URL</label> to your HTML
         <div class="input-group">
           <input type="text" class="form-control" id="css-url" value="" readonly="true"></input>
         </div>        
@@ -20,8 +19,16 @@ permalink: /theme/
       </li>
     </ol>
 
+    <p>For more information and example themes, check out <a href="http://esri.github.io/calcite-bootstrap">Calcite-Bootstrap</a>.</p>
+    <h2>Theme Apps</h2>
+    <p>
+      There are a growing collection of apps which can be configured to share the look and feel of your organization's branding.
+    </p>
+    <ul>
+      <li><a class="site-link" href="https://storymaps.esri.com/templates/crowdsource-shared-style/" title="StoryMaps: Crowdsource">StoryMaps: Crowdsource</a></li>
+      <li><a class="site-link" href="http://ajturner.github.io/calcite-maps/" title="Calcite Maps">Calcite Maps</a></li>
+    </ul>
   </div>
-</article>
 <script>
   $('#css-url')[0].value = cssUrl(gSiteId);
 </script>
