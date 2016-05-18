@@ -33,9 +33,9 @@
 		            return sParameterName[1] === undefined ? true : sParameterName[1];
 		        }
 		    }
-		};	
+		};
 		var cssUrl = function(siteId) {
-			return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/css/css";
+			return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/stylesheets/opendata.css";
 		}
 		var appendCSS = function(siteId) {
 			if(siteId === undefined || siteId === null) {
@@ -79,5 +79,5 @@
 			return false;
 		}
 		getSite(gSiteId = getUrlParameter('site'));
-	</script>	
+	</script>
 </head>
