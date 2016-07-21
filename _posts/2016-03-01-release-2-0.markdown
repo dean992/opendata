@@ -1,8 +1,0 @@
----
-layout: post
-title:  "Release v2.0"
-date:   2016-03-01 19:36:28 -0500
-categories: release update
----
-
-Initial release FTW

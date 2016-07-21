@@ -17,21 +17,21 @@
           {% if my_page.title %}
             <li><a class="site-link page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
           {% endif %}
-        {% endfor %}      
+        {% endfor %}
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://github.com/esri/opendata">Learn More</a></li>
+          <li><a href="http://opendata.arcis.com/about">Learn More</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change Theme <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li> 
-                <a href="?site=422" onclick2="return getSite(422)">Halifax</a> 
               <li>
-                <a href="?site=423" onclick2="return getSite(423)">Washington, DC</a>
+                <a href="?site=422" onclick2="return getSite(422)">Halifax</a>
+              <li>
+                <a href="?site=9714" onclick2="return getSite(9714)">Washington, DC</a>
               </li>
-            </ul>        
-          </li>            
+            </ul>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!-- /.container -->

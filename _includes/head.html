@@ -34,17 +34,15 @@
 		        }
 		    }
 		};
-		var cssUrl = function(siteId) {
-			return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/stylesheets/opendata.css";
-		}
-		var appendCSS = function(siteId) {
-			if(siteId === undefined || siteId === null) {
+
+		var appendCSS = function(cssUrl) {
+			if(cssUrl === undefined || cssUrl === null) {
 				return;
 			}
 			var calcite = document.getElementById("calcite");
 
 			var link = document.createElement("link")
-			link.href = cssUrl(siteId);
+			link.href = cssUrl;
 			link.type = "text/css";
 			link.rel = "stylesheet";
 			link.id = "calcite";
@@ -58,7 +56,9 @@
 		}
 		var updateSite = function(siteConfig) {
 			$("#site-title")[0].innerText = siteConfig.data.attributes.layout.header.component.settings.title;
-			$("#site-logo")[0].src = siteConfig.data.attributes.layout.header.component.settings.logoUrl;
+			$("#site-logo")[0].src = siteConfig.data.attributes.theme.logo.small;
+			appendCSS(siteConfig.data.attributes.stylesheets.opendata.current);
+
 			$.each($(".site-link"), function(i,link) {
 				link.href = link.href + "?site=" + gSiteId;
 			});
@@ -72,10 +72,10 @@
 				return;
 			}
 			$.ajax({
-			  url: "https://opendatadev.arcgis.com/api/v2/sites/" + siteId,
+			  url: "https://opendata.arcgis.com/api/v2/sites/" + siteId,
 			  success: updateSite
 			});
-			appendCSS(siteId);
+
 			return false;
 		}
 		getSite(gSiteId = getUrlParameter('site'));
